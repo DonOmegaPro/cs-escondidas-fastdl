@@ -1,11 +1,11 @@
-/* statsx.css - Versión Azul de Máxima Compatibilidad */
+/* statsx.css - Versión de Máxima Compatibilidad */
 html{ 
-    border: 1px solid #4E5E6F; 
+    border: 1px solid #707070; 
 }
 body{ 
-    background: #182028; 
+    background: #303030; 
     font-family: Arial; 
-    color: #8BA3BC; 
+    color: #E0E0E0; 
     padding: 5px; 
 }
 table{ 
@@ -13,21 +13,21 @@ table{
     border-collapse: collapse; 
     font-size: 15px; 
     margin-bottom: 15px; /* Espacio DEBAJO de cada tabla para separarlas */
-    border: 1px solid #4E5E6F;
+    border: 1px solid #707070;
 }
 th{ 
-    background: #232C36; 
-    color: #95B9DC; 
+    background: #454545; 
+    color: #88CC00; 
     text-align: center; 
     padding: 5px; 
 }
 td{ 
     padding: 4px 8px; 
     text-align: left; 
-    border-top: 1px solid #4E5E6F; 
+    border-top: 1px solid #454545; 
 }
 #b{ 
-    background: #1B242C; /* Fila alterna */
+    background: #353535; /* Fila alterna */
 }
 /* Centrar el texto en el Top15 */
 #q td, #q th { 
