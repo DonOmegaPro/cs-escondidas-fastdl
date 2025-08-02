@@ -1,68 +1,35 @@
-html {
-	border:1px solid #8b4c00;
+/* statsx.css - vFinal - Máxima Compatibilidad y Legibilidad */
+html{ 
+    border: 1px solid #8b4c00; 
 }
-body {
-	background:#182028;
-	font-family:Arial;
+body{ 
+    background: #303030; 
+    font-family: Arial; 
+    color: #E0E0E0; 
+    padding: 5px; 
 }
-th {
-	background:#232C36;
-	color:#95B9DC;
-	text-align:center;
+table{
+    width: 98%;
+    border-collapse: collapse;
+    font-size: 15px;
+    margin-bottom: 15px; /* Espacio DEBAJO de cada tabla para separarlas */
+    border: 1px solid #707070;
 }
-td {
-	border-center:0px #BFBDBD solid;
-	text-align:center;
+th{
+    background: #454545;
+    color: #88CC00;
+    text-align: center;
+    padding: 5px;
 }
-table {
-	color:#8BA3BC;
-	font-size:15px;
-	border:1px solid #4E5E6F;
-	border-collapse:collapse;
+td{
+    padding: 4px 8px; /* Espaciado interno */
+    text-align: left; /* Alinear todo a la izquierda como una lista */
+    border-top: 1px solid #454545;
 }
-progress {
-	height:10x;
-	width:70%;
-	float:left;
+#b{ 
+    background: #353535; /* Fila alterna */
 }
-#clr {
-	color:#95B9DC;
-	text-align:center;
-}
-#q {
-	width:100%;
-	height:100%;
-}
-#d {
-	width:46%;
-	height:70%;
-	float:left;
-	margin:2% 2%;
-	table-layout:fixed;
-}
-#b {
-	background:#1B242C;
-}
-#c {
-	width:35%;
-	height:55%;
-	float:left;
-	margin: 0 0 1% 10%;
-	table-layout:fixed;
-}
-#f {
-	font-size:50px;
-	color:#95B9DC;
-}
-#r {
-	width:100%;
-	height:35%;
-	border-top-style:none;
-	table-layout:fixed;
-}
-#v {
-	width:100%;
-	height:40px;
-	border-bottom-style:none;
-	table-layout:fixed;
+/* Centrar el texto en el Top15, que sí se ve bien */
+#q td, #q th {
+    text-align: center;
 }
