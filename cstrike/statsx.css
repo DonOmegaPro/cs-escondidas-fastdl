@@ -1,0 +1,35 @@
+/* statsx.css - Versión Azul de Máxima Compatibilidad */
+html{ 
+    border: 1px solid #4E5E6F; 
+}
+body{ 
+    background: #182028; 
+    font-family: Arial; 
+    color: #8BA3BC; 
+    padding: 5px; 
+}
+table{ 
+    width: 98%; 
+    border-collapse: collapse; 
+    font-size: 15px; 
+    margin-bottom: 15px; /* Espacio DEBAJO de cada tabla para separarlas */
+    border: 1px solid #4E5E6F;
+}
+th{ 
+    background: #232C36; 
+    color: #95B9DC; 
+    text-align: center; 
+    padding: 5px; 
+}
+td{ 
+    padding: 4px 8px; 
+    text-align: left; 
+    border-top: 1px solid #4E5E6F; 
+}
+#b{ 
+    background: #1B242C; /* Fila alterna */
+}
+/* Centrar el texto en el Top15 */
+#q td, #q th { 
+    text-align: center; 
+}
