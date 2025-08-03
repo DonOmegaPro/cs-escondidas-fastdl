@@ -1,68 +1,101 @@
-html {
-	border:1px solid #8b4c00;
-}
+/* --- ESTILO GENERAL DEL CUERPO --- */
 body {
-	background:#303030;
-	font-family:Arial;
+	/* Fondo con la imagen que pediste */
+	background-image: url('https://i.imgur.com/yhkStzl.jpeg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	/* Color de fondo oscuro si la imagen no carga */
+	background-color: #1a1a1a;
+	
+	/* Estilos de fuente por defecto */
+	color: #FFFFFF; /* Texto blanco */
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
 }
-th {
-	background:#454545;
-	color:#88CC00;
-	text-align:center;
-}
-td {
-	border-center:0px #BFBDBD solid;
-	text-align:center;
-}
+
+/* --- ESTILO DE TABLAS --- */
 table {
-	color:#E0E0E0;
-	font-size:15px;
-	border:1px solid #707070;
-	border-collapse:collapse;
+	width: 100%;
+	border-collapse: collapse; /* Une los bordes de las celdas */
+	border-spacing: 0;
+	background-color: transparent; /* Hacemos la tabla transparente */
+	color: #FFFFFF; /* Color de texto general para las tablas */
 }
-progress {
-	height:10x;
-	width:70%;
-	float:left;
+
+/* --- ENCABEZADOS DE TABLA (Kills, Deaths, etc.) --- */
+th {
+	background: transparent; /* Sin fondo de color */
+	
+	/* Color de texto azul claro, como en la imagen */
+	color: #7CB5D8;
+	
+	text-align: left; /* Alineación del texto */
+	padding: 10px 8px; /* Espaciado interno */
+	
+	/* Línea inferior para separar el encabezado */
+	border-bottom: 2px solid rgba(124, 181, 216, 0.4);
+	
+	/* Para que los títulos siempre salgan en mayúsculas */
+	text-transform: uppercase;
+	font-weight: normal;
 }
-#clr {
-	color:#88CC00;
-	text-align:center;
+
+/* --- CELDAS DE DATOS (td) Y FILAS (tr) --- */
+td {
+	padding: 8px; /* Espaciado interno */
 }
-#q {
-	width:100%;
-	height:100%;
+
+/* Fila por defecto (oscura y semi-transparente) */
+tr {
+	/* Negro con 70% de opacidad */
+	background-color: rgba(0, 0, 0, 0.7); 
 }
-#d {
+
+/* Fila alternativa usando el id=b del plugin (gris y semi-transparente) */
+tr#b {
+	/* Gris oscuro con 70% de opacidad */
+	background-color: rgba(35, 35, 35, 0.7);
+}
+
+
+/* --- AJUSTES DE ALINEACIÓN POR COLUMNA --- */
+/* Las siguientes reglas alinean el texto en cada columna como en la imagen */
+
+/* Columna 1 (#) y 3 a 11 (los números de stats) */
+td:nth-child(1),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(7),
+td:nth-child(8),
+td:nth-child(9),
+td:nth-child(10),
+td:nth-child(11) {
+	text-align: center;
+}
+
+/* Columna 2 (Player) */
+td:nth-child(2) {
+	text-align: left;
+}
+
+/* --- ESTILOS PARA /STATSME (No afecta a /top15) --- */
+/* Mantenemos estos para que las otras pantallas no se rompan */
+#c, #d {
+	background-color: rgba(0, 0, 0, 0.7);
+	border: 1px solid rgba(124, 181, 216, 0.4);
 	width:46%;
-	height:70%;
 	float:left;
-	margin:2% 2%;
-	table-layout:fixed;
+	margin:2%;
 }
-#b {
-	background:#353535;
-}
-#c {
-	width:35%;
-	height:55%;
-	float:left;
-	margin: 0 0 1% 10%;
-	table-layout:fixed;
-}
-#f {
-	font-size:50px;
-	color:#88CC00;
-}
+
 #r {
-	width:100%;
-	height:35%;
-	border-top-style:none;
-	table-layout:fixed;
+	border-top: 1px solid rgba(124, 181, 216, 0.4);
 }
+
 #v {
-	width:100%;
-	height:40px;
-	border-bottom-style:none;
-	table-layout:fixed;
+	border-bottom-style: none;
 }
