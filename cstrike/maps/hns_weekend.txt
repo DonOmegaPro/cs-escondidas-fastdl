@@ -1,0 +1,13 @@
+**Some info about the map:**
+- Best played with 100aa
+- Best played with 6 or more players on each team
+- Max distance to jump is 260 
+- Spawn places 32/32
+- Quality was sacrificed for optimization
+
+**Other Notes**
+This map should be bug free, but if you find any bugs please report on gamebanana.com.
+Have fun while playing it. I spend some time making it, so hopefully you'll enjoy it.
+
+Thanks,
+ceLoFaN
