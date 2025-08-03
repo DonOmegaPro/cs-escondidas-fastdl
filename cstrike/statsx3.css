@@ -82,8 +82,17 @@ td:nth-child(2) {
 	text-align: left;
 }
 
-/* --- ESTILOS PARA /STATSME (No afecta a /top15) --- */
-/* Mantenemos estos para que las otras pantallas no se rompan */
+/* --- ESTILOS PARA /STATSME Y /TOP15 --- */
+
+/* ¡¡NUEVO!! - Estilo para la tabla del Top 15 */
+#q {
+	/* La hacemos un poco más angosta (95% del ancho total) */
+	width: 95%;
+	
+	/* La centramos horizontalmente y añadimos un margen vertical */
+	margin: 2% auto;
+}
+
 #c, #d {
 	background-color: rgba(0, 0, 0, 0.7);
 	border: 1px solid rgba(124, 181, 216, 0.4);
