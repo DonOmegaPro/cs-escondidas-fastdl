@@ -1,110 +1,110 @@
-/* --- ESTILO GENERAL DEL CUERPO --- */
+/* --- Estilos Generales --- */
 body {
-	/* Fondo con la imagen que pediste */
+	/* MODIFICADO: Añadido el fondo de imagen y color de respaldo */
 	background-image: url('https://i.imgur.com/yhkStzl.jpeg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	
-	/* Color de fondo oscuro si la imagen no carga */
 	background-color: #1a1a1a;
-	
-	/* Estilos de fuente por defecto */
-	color: #FFFFFF; /* Texto blanco */
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 14px;
+	font-family: Arial, sans-serif;
+	color: #FFFFFF; /* MODIFICADO: Color de texto por defecto */
 }
 
-/* --- ESTILO DE TABLAS --- */
+/* --- Estilo General de Tablas --- */
 table {
-	width: 100%;
-	border-collapse: collapse; /* Une los bordes de las celdas */
-	border-spacing: 0;
-	background-color: transparent; /* Hacemos la tabla transparente */
-	color: #FFFFFF; /* Color de texto general para las tablas */
+	color: #E0E0E0;
+	font-size: 15px;
+	border-collapse: collapse;
+	/* MODIFICADO: Borde transparente para un look más limpio */
+	border: 1px solid transparent; 
 }
 
-/* --- ENCABEZADOS DE TABLA (Kills, Deaths, etc.) --- */
+/* --- Encabezados de Tabla (th) --- */
 th {
-	background: transparent; /* Sin fondo de color */
-	
-	/* Color de texto azul claro, como en la imagen */
+	/* MODIFICADO: Fondo transparente y nuevo color de texto azul */
+	background: transparent;
 	color: #7CB5D8;
-	
-	text-align: left; /* Alineación del texto */
-	padding: 10px 8px; /* Espaciado interno */
-	
-	/* Línea inferior para separar el encabezado */
+	text-align: left;
+	padding: 10px 8px;
+	/* MODIFICADO: Línea inferior para separar el encabezado */
 	border-bottom: 2px solid rgba(124, 181, 216, 0.4);
-	
-	/* Para que los títulos siempre salgan en mayúsculas */
 	text-transform: uppercase;
-	font-weight: normal;
 }
 
-/* --- CELDAS DE DATOS (td) Y FILAS (tr) --- */
+/* --- Celdas de Tabla (td) --- */
 td {
-	padding: 8px; /* Espaciado interno */
+	text-align: center;
+	padding: 8px; /* MODIFICADO: Añadido espaciado */
 }
 
-/* Fila por defecto (oscura y semi-transparente) */
+/* --- Filas con Colores Alternos y Transparencia --- */
 tr {
-	/* Negro con 70% de opacidad */
-	background-color: rgba(0, 0, 0, 0.7); 
+	/* MODIFICADO: Fondo de fila por defecto, negro semi-transparente */
+	background-color: rgba(0, 0, 0, 0.7);
 }
-
-/* Fila alternativa usando el id=b del plugin (gris y semi-transparente) */
-tr#b {
-	/* Gris oscuro con 70% de opacidad */
+#b {
+	/* MODIFICADO: Fondo de fila alterno, gris oscuro semi-transparente */
 	background-color: rgba(35, 35, 35, 0.7);
 }
 
+/* --- Layouts Específicos por ID (TU BASE) --- */
 
-/* --- AJUSTES DE ALINEACIÓN POR COLUMNA --- */
-/* Las siguientes reglas alinean el texto en cada columna como en la imagen */
+/* MODIFICADO: Ajustado el Top15 para que sea más angosto y centrado */
+#q {
+	width: 95%;
+	margin: 2% auto; /* Centra la tabla y le da margen arriba/abajo */
+}
 
-/* Columna 1 (#) y 3 a 11 (los números de stats) */
-td:nth-child(1),
-td:nth-child(3),
-td:nth-child(4),
-td:nth-child(5),
-td:nth-child(6),
-td:nth-child(7),
-td:nth-child(8),
-td:nth-child(9),
-td:nth-child(10),
-td:nth-child(11) {
+/* Mantenemos tu layout para /rankstats */
+#d {
+	width: 46%;
+	float: left;
+	margin: 2% 2%;
+	table-layout: fixed;
+	/* MODIFICADO: Añadido fondo para que se vea como una ventana */
+	background-color: rgba(20, 20, 20, 0.85);
+	border-radius: 4px;
+	padding: 5px;
+}
+
+/* Mantenemos tu layout para /statsme */
+#c {
+	width: 46%; /* MODIFICADO: Ajustado para que quepa mejor con #d */
+	float: left;
+	margin: 2% 2%;
+	table-layout: fixed;
+	/* MODIFICADO: Añadido fondo para que se vea como una ventana */
+	background-color: rgba(20, 20, 20, 0.85);
+	border-radius: 4px;
+	padding: 5px;
+}
+
+/* --- Otros Elementos --- */
+
+#r, #v {
+	width: 100%;
+	table-layout: fixed;
+	border-top-style: none;
+	border-bottom-style: none;
+}
+
+#clr {
+	color: #88CC00;
 	text-align: center;
 }
 
-/* Columna 2 (Player) */
-td:nth-child(2) {
-	text-align: left;
+#f {
+	font-size: 50px;
+	color: #88CC00;
 }
 
-/* --- ESTILOS PARA /STATSME Y /TOP15 --- */
-
-/* ¡¡NUEVO!! - Estilo para la tabla del Top 15 */
-#q {
-	/* La hacemos un poco más angosta (95% del ancho total) */
-	width: 95%;
-	
-	/* La centramos horizontalmente y añadimos un margen vertical */
-	margin: 2% auto;
+progress {
+	height: 10px;
+	width: 70%;
+	float: left;
 }
 
-#c, #d {
-	background-color: rgba(0, 0, 0, 0.7);
-	border: 1px solid rgba(124, 181, 216, 0.4);
-	width:46%;
-	float:left;
-	margin:2%;
-}
-
-#r {
-	border-top: 1px solid rgba(124, 181, 216, 0.4);
-}
-
-#v {
-	border-bottom-style: none;
+/* ELIMINADO: Quitado el borde naranja innecesario del html */
+html {
+	border: none;
 }
