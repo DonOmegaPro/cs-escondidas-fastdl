@@ -58,8 +58,8 @@ tr {
 /* --- SE MANTIENE TU LAYOUT ORIGINAL --- */
 /* Estas reglas no se tocan para no romper la distribución */
 #q {
-	width: 100%;
-	height: 100%;
+    width: 95%; /* La hacemos un poco más angosta */
+    margin: 2% auto; /* La centramos y le damos un pequeño margen */
 }
 
 #d {
