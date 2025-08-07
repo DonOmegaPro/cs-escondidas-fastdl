@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas de Quesería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-900">
+
+<div id="root"></div>
+
+<script type="text/babel">
+  const App = () => {
+    const [activeTab, setActiveTab] = React.useState('ph');
+
+    // --- State and functions for pH / Acidez Calculator ---
+    const [ph, setPh] = React.useState('');
+    const [acidez, setAcidez] = React.useState('');
+    const [phResultado, setPhResultado] = React.useState('');
+
+    const handlePhChange = (e) => {
+      const value = e.target.value;
+      setPh(value);
+      setAcidez('');
+      if (value !== '' && !isNaN(value)) {
+        const phFloat = parseFloat(value);
+        const calculatedAcidez = ((7.0 - phFloat) * 0.15).toFixed(3);
+        setAcidez(calculatedAcidez);
+        setPhResultado(`Acidez estimada: ${calculatedAcidez} % de ácido láctico.`);
+      } else {
+        setPhResultado('Por favor, ingresa un valor de pH válido (Ej. 6.7).');
+      }
+    };
+
+    const handleAcidezChange = (e) => {
+      const value = e.target.value;
+      setAcidez(value);
+      setPh('');
+      if (value !== '' && !isNaN(value)) {
+        const acidezFloat = parseFloat(value);
+        const calculatedPh = (7.0 - (acidezFloat / 0.15)).toFixed(2);
+        setPh(calculatedPh);
+        setPhResultado(`pH estimado: ${calculatedPh}.`);
+      } else {
+        setPhResultado('Por favor, ingresa un valor de acidez válido (Ej. 0.14).');
+      }
+    };
+
+    // --- State and functions for Salinity Calculator ---
+    const [pesoSal, setPesoSal] = React.useState('');
+    const [pesoQueso, setPesoQueso] = React.useState('');
+    const [salinidadResultado, setSalinidadResultado] = React.useState('');
+
+    const calculateSalinity = () => {
+      if (pesoSal !== '' && pesoQueso !== '' && !isNaN(pesoSal) && !isNaN(pesoQueso) && parseFloat(pesoQueso) > 0) {
+        const salinidad = ((parseFloat(pesoSal) / parseFloat(pesoQueso)) * 100).toFixed(2);
+        setSalinidadResultado(`Salinidad precisa: ${salinidad} %`);
+      } else {
+        setSalinidadResultado('Por favor, ingresa valores válidos (peso del queso > 0).');
+      }
+    };
+
+    // --- State and functions for Rennet Calculator ---
+    const [volumenLeche, setVolumenLeche] = React.useState('');
+    const [factorCuajo, setFactorCuajo] = React.useState(10000); // Default to a common factor (1:10000)
+    const [cuajoResultado, setCuajoResultado] = React.useState('');
+
+    const calculateRennet = () => {
+      if (volumenLeche !== '' && factorCuajo !== '' && !isNaN(volumenLeche) && !isNaN(factorCuajo) && parseFloat(factorCuajo) > 0) {
+        const cuajoNeeded = (parseFloat(volumenLeche) / parseFloat(factorCuajo)).toFixed(2);
+        setCuajoResultado(`Cantidad de cuajo necesaria: ${cuajoNeeded} ml.`);
+      } else {
+        setCuajoResultado('Por favor, ingresa valores válidos (factor de cuajo > 0).');
+      }
+    };
+
+    // --- State and functions for Yield Calculator ---
+    const [pesoQuesoFinal, setPesoQuesoFinal] = React.useState('');
+    const [volumenLecheInicial, setVolumenLecheInicial] = React.useState('');
+    const [rendimientoResultado, setRendimientoResultado] = React.useState('');
+
+    const calculateYield = () => {
+      if (pesoQuesoFinal !== '' && volumenLecheInicial !== '' && !isNaN(pesoQuesoFinal) && !isNaN(volumenLecheInicial) && parseFloat(volumenLecheInicial) > 0) {
+        const yieldPercentage = ((parseFloat(pesoQuesoFinal) / parseFloat(volumenLecheInicial)) * 100).toFixed(2);
+        setRendimientoResultado(`Rendimiento del queso: ${yieldPercentage} %`);
+      } else {
+        setRendimientoResultado('Por favor, ingresa valores válidos (volumen de leche > 0).');
+      }
+    };
+
+    // Main render
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white p-4">
+        <div className="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-lg">
+          <h1 className="text-3xl font-extrabold text-center mb-6 text-yellow-400">
+            Herramientas de Quesería
+          </h1>
+          
+          {/* Tab Navigation */}
+          <div className="flex justify-around mb-6 border-b-2 border-gray-700">
+            <button
+              onClick={() => setActiveTab('ph')}
+              className={`p-3 font-semibold transition duration-200 ${
+                activeTab === 'ph' ? 'border-b-2 border-yellow-400 text-yellow-400' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              pH / Acidez
+            </button>
+            <button
+              onClick={() => setActiveTab('salinidad')}
+              className={`p-3 font-semibold transition duration-200 ${
+                activeTab === 'salinidad' ? 'border-b-2 border-yellow-400 text-yellow-400' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Salinidad
+            </button>
+            <button
+              onClick={() => setActiveTab('cuajo')}
+              className={`p-3 font-semibold transition duration-200 ${
+                activeTab === 'cuajo' ? 'border-b-2 border-yellow-400 text-yellow-400' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Cuajo
+            </button>
+            <button
+              onClick={() => setActiveTab('rendimiento')}
+              className={`p-3 font-semibold transition duration-200 ${
+                activeTab === 'rendimiento' ? 'border-b-2 border-yellow-400 text-yellow-400' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Rendimiento
+            </button>
+          </div>
+
+          {/* --- pH / Acidity Calculator Tab --- */}
+          {activeTab === 'ph' && (
+            <div>
+              <p className="text-gray-400 text-center mb-6">
+                Convierte pH y Acidez (en % de ácido láctico) de forma simple.
+              </p>
+              <div className="mb-4">
+                <label htmlFor="ph" className="block text-gray-300 font-semibold mb-2">
+                  Valor de pH:
+                </label>
+                <input
+                  id="ph"
+                  type="number"
+                  step="0.01"
+                  value={ph}
+                  onChange={handlePhChange}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 6.7"
+                />
+              </div>
+              <div className="mb-6">
+                <label htmlFor="acidez" className="block text-gray-300 font-semibold mb-2">
+                  Acidez (% ácido láctico):
+                </label>
+                <input
+                  id="acidez"
+                  type="number"
+                  step="0.001"
+                  value={acidez}
+                  onChange={handleAcidezChange}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 0.14"
+                />
+              </div>
+              <div className="bg-gray-700 p-4 rounded-xl text-center">
+                <p className="text-xl font-bold text-yellow-400">Resultado:</p>
+                <p className="mt-2 text-lg text-gray-300">
+                  {phResultado || "Ingresa un valor para calcular."}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* --- Salinity Calculator Tab --- */}
+          {activeTab === 'salinidad' && (
+            <div>
+              <p className="text-gray-400 text-center mb-6">
+                Calcula el porcentaje de salinidad en el queso por peso.
+              </p>
+              <div className="mb-4">
+                <label htmlFor="pesoSal" className="block text-gray-300 font-semibold mb-2">
+                  Peso de la sal (en gramos):
+                </label>
+                <input
+                  id="pesoSal"
+                  type="number"
+                  step="0.1"
+                  value={pesoSal}
+                  onChange={(e) => setPesoSal(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 200 g"
+                />
+              </div>
+              <div className="mb-6">
+                <label htmlFor="pesoQueso" className="block text-gray-300 font-semibold mb-2">
+                  Peso del queso (en gramos):
+                </label>
+                <input
+                  id="pesoQueso"
+                  type="number"
+                  step="0.1"
+                  value={pesoQueso}
+                  onChange={(e) => setPesoQueso(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 1000 g"
+                />
+              </div>
+              <button
+                onClick={calculateSalinity}
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-lg transition duration-200"
+              >
+                Calcular Salinidad
+              </button>
+              <div className="bg-gray-700 p-4 rounded-xl text-center mt-6">
+                <p className="text-xl font-bold text-yellow-400">Resultado:</p>
+                <p className="mt-2 text-lg text-gray-300">
+                  {salinidadResultado || "Ingresa valores para calcular."}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* --- Rennet Calculator Tab --- */}
+          {activeTab === 'cuajo' && (
+            <div>
+              <p className="text-gray-400 text-center mb-6">
+                Calcula la cantidad de cuajo necesaria.
+              </p>
+              <div className="mb-4">
+                <label htmlFor="volumenLeche" className="block text-gray-300 font-semibold mb-2">
+                  Volumen de leche (en litros):
+                </label>
+                <input
+                  id="volumenLeche"
+                  type="number"
+                  step="0.1"
+                  value={volumenLeche}
+                  onChange={(e) => setVolumenLeche(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 10 L"
+                />
+              </div>
+              <div className="mb-6">
+                <label htmlFor="factorCuajo" className="block text-gray-300 font-semibold mb-2">
+                  Factor de cuajo (1:X):
+                </label>
+                <input
+                  id="factorCuajo"
+                  type="number"
+                  step="1"
+                  value={factorCuajo}
+                  onChange={(e) => setFactorCuajo(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 10000"
+                />
+              </div>
+              <button
+                onClick={calculateRennet}
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-lg transition duration-200"
+              >
+                Calcular Cuajo
+              </button>
+              <div className="bg-gray-700 p-4 rounded-xl text-center mt-6">
+                <p className="text-xl font-bold text-yellow-400">Resultado:</p>
+                <p className="mt-2 text-lg text-gray-300">
+                  {cuajoResultado || "Ingresa valores para calcular."}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* --- Yield Calculator Tab --- */}
+          {activeTab === 'rendimiento' && (
+            <div>
+              <p className="text-gray-400 text-center mb-6">
+                Calcula el rendimiento de tu queso.
+              </p>
+              <div className="mb-4">
+                <label htmlFor="pesoQuesoFinal" className="block text-gray-300 font-semibold mb-2">
+                  Peso final del queso (en kg):
+                </label>
+                <input
+                  id="pesoQuesoFinal"
+                  type="number"
+                  step="0.01"
+                  value={pesoQuesoFinal}
+                  onChange={(e) => setPesoQuesoFinal(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 1.2 kg"
+                />
+              </div>
+              <div className="mb-6">
+                <label htmlFor="volumenLecheInicial" className="block text-gray-300 font-semibold mb-2">
+                  Volumen inicial de leche (en L):
+                </label>
+                <input
+                  id="volumenLecheInicial"
+                  type="number"
+                  step="0.01"
+                  value={volumenLecheInicial}
+                  onChange={(e) => setVolumenLecheInicial(e.target.value)}
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200"
+                  placeholder="Ej. 10 L"
+                />
+              </div>
+              <button
+                onClick={calculateYield}
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-4 rounded-lg transition duration-200"
+              >
+                Calcular Rendimiento
+              </button>
+              <div className="bg-gray-700 p-4 rounded-xl text-center mt-6">
+                <p className="text-xl font-bold text-yellow-400">Resultado:</p>
+                <p className="mt-2 text-lg text-gray-300">
+                  {rendimientoResultado || "Ingresa valores para calcular."}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+
+</body>
+</html>
